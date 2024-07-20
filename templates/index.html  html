@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Allocation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Room Allocation</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="group_csv">Group Information CSV file:</label>
+                <input type="file" id="group_csv" name="group_csv">
+            </div>
+            <div class="form-group">
+                <label for="hostel_csv">Hostel Information CSV file:</label>
+                <input type="file" id="hostel_csv" name="hostel_csv">
+            </div>
+            <button type="submit" class="btn btn-primary">Allocate Rooms</button>
+        </form>
+        {% if allocation %}
+            <h2>Allocation Results:</h2>
+            <table class="table">
+                <tr>
+                    <th>Group ID</th>
+                    <th>Hostel Name</th>
+                    <th>Room Number</th>
+                    <th>Members Allocated</th>
+                </tr>
+                {% for row in allocation %}
+                    <tr>
+                        <td>{{ row['Group ID'] }}</td>
+                        <td>{{ row['Hostel Name'] }}</td>
+                        <td>{{ row['Room Number'] }}</td>
+                        <td>{{ row['Members Allocated'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
